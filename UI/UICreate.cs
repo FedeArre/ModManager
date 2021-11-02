@@ -14,15 +14,8 @@ namespace ModManager
 
         internal GameObject canvas;
         internal GameObject eventSystem;
-        internal GameObject buttonModShow;
-        internal GameObject scrollCanva;
-        internal GameObject modTemplate;
-        internal GameObject closeMenuButton;
 
         private AssetBundle bundle;
-
-        private bool scrollCanvaShown;
-        private bool loadedMods;
 
         private UICreate()
         {
@@ -35,19 +28,8 @@ namespace ModManager
             eventSystem = bundle.LoadAsset<GameObject>("EventSystem");
             eventSystem = GameObject.Instantiate(eventSystem);
             GameObject.DontDestroyOnLoad(eventSystem);
-            
-            scrollCanva = GameObject.Find("ModList");
-            buttonModShow = GameObject.Find("ModListButton");
-            modTemplate = GameObject.Find("ModTemplate");
-            closeMenuButton = GameObject.Find("CloseModListButton");
 
-            scrollCanva.SetActive(scrollCanvaShown);
-
-            buttonModShow.GetComponent<Button>().onClick.AddListener(HandleModButton);
-            buttonModShow.SetActive(true);
-
-            closeMenuButton.GetComponent<Button>().onClick.AddListener(HandleModButton);
-            closeMenuButton.SetActive(true);
+            UIControl.GetInstance().canvas = canvas;
         }
 
         public static UICreate GetInstance()
@@ -55,29 +37,6 @@ namespace ModManager
             if (instance == null)
                 instance = new UICreate();
             return instance;
-        }
-
-        public void HandleModButton()
-        {
-            scrollCanvaShown = !scrollCanvaShown;
-            scrollCanva.SetActive(scrollCanvaShown);
-            if(!loadedMods)
-            {
-                LoadList();
-            }
-        }
-
-        private void LoadList()
-        {
-            foreach(Mod mod in ModLoader.mods)
-            {
-                GameObject tempGameObject = GameObject.Instantiate(modTemplate);
-                tempGameObject.transform.GetChild(0).GetComponent<Text>().text = mod.Name;
-                // TO - DO icon.
-                tempGameObject.transform.GetChild(3).GetComponent<Text>().text = "Author: " + mod.Author;
-                tempGameObject.transform.SetParent(scrollCanva.transform.GetChild(0).GetChild(0));
-            }
-            loadedMods = true;
         }
     }
 }
