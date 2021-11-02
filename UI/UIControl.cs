@@ -62,7 +62,7 @@ namespace ModManager
                     // This probably doesn't work.
                     Texture2D txt = new Texture2D(1, 1);
                     txt.LoadImage(mod.Icon);
-                    tempGameObject.transform.GetChild(1).GetComponent<Image>().sprite = new Sprite(txt, new Rect(0, 0, txt.width, txt.height), new Vector2(0f, 0f));
+                    tempGameObject.transform.GetChild(1).GetComponent<Image>().sprite = Sprite.Create(txt, new Rect(0, 0, txt.width, txt.height), new Vector2(0.5f, 0.5f));
                 }
                 tempGameObject.transform.GetChild(3).GetComponent<Text>().text = "Author: " + mod.Author;
                 tempGameObject.transform.SetParent(scrollCanva.transform.GetChild(0).GetChild(0));
