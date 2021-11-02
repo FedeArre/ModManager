@@ -17,6 +17,7 @@ namespace ModManager
         internal GameObject buttonModShow;
         internal GameObject scrollCanva;
         internal GameObject modTemplate;
+        internal GameObject closeMenuButton;
 
         private AssetBundle bundle;
 
@@ -38,11 +39,15 @@ namespace ModManager
             scrollCanva = GameObject.Find("ModList");
             buttonModShow = GameObject.Find("ModListButton");
             modTemplate = GameObject.Find("ModTemplate");
+            closeMenuButton = GameObject.Find("CloseModListButton");
 
             scrollCanva.SetActive(scrollCanvaShown);
 
             buttonModShow.GetComponent<Button>().onClick.AddListener(HandleModButton);
             buttonModShow.SetActive(true);
+
+            closeMenuButton.GetComponent<Button>().onClick.AddListener(HandleModButton);
+            closeMenuButton.SetActive(true);
         }
 
         public static UICreate GetInstance()
