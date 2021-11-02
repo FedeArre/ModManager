@@ -21,6 +21,7 @@ namespace ModManager
         private AssetBundle bundle;
 
         private bool scrollCanvaShown;
+        private bool loadedMods;
 
         private UICreate()
         {
@@ -53,9 +54,25 @@ namespace ModManager
 
         public void HandleModButton()
         {
-            Debug.LogError("fa");
             scrollCanvaShown = !scrollCanvaShown;
             scrollCanva.SetActive(scrollCanvaShown);
+            if(!loadedMods)
+            {
+                LoadList();
+            }
+        }
+
+        private void LoadList()
+        {
+            foreach(Mod mod in ModLoader.mods)
+            {
+                GameObject tempGameObject = GameObject.Instantiate(modTemplate);
+                tempGameObject.transform.GetChild(0).GetComponent<Text>().text = mod.Name;
+                // TO - DO icon.
+                tempGameObject.transform.GetChild(3).GetComponent<Text>().text = "Author: " + mod.Author;
+                tempGameObject.transform.SetParent(scrollCanva.transform.GetChild(0).GetChild(0));
+            }
+            loadedMods = true;
         }
     }
 }
