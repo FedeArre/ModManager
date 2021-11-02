@@ -19,5 +19,10 @@ namespace ModManager
             RegisteredMods.Add(ms);
             return ms;
         }
+
+        public ModManager()
+        {
+            UICreate.GetInstance();
+        }
     }
 }
