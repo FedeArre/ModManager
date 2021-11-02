@@ -13,7 +13,6 @@ namespace ModManager
         private static UICreate instance;
 
         internal GameObject canvas;
-        internal GameObject eventSystem;
 
         private AssetBundle bundle;
 
@@ -24,10 +23,6 @@ namespace ModManager
             canvas = bundle.LoadAsset<GameObject>("Canvas");
             canvas = GameObject.Instantiate(canvas);
             GameObject.DontDestroyOnLoad(canvas);
-
-            eventSystem = bundle.LoadAsset<GameObject>("EventSystem");
-            eventSystem = GameObject.Instantiate(eventSystem);
-            GameObject.DontDestroyOnLoad(eventSystem);
 
             UIControl.GetInstance().canvas = canvas;
         }

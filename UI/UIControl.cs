@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace ModManager
@@ -27,7 +29,7 @@ namespace ModManager
             buttonModShow = GameObject.Find("ModListButton");
             modTemplate = GameObject.Find("ModTemplate");
             closeMenuButton = GameObject.Find("CloseModListButton");
-
+            
             scrollCanva.SetActive(false);
 
             buttonModShow.GetComponent<Button>().onClick.AddListener(HandleShowHideMenuButton);
@@ -53,7 +55,15 @@ namespace ModManager
         
         public void HandleDetailsSettingsButton()
         {
+            string actualModId = EventSystem.current.currentSelectedGameObject.name;
+            Mod mod = ModLoader.GetModInstance(actualModId);
+            if (mod == null)
+                return;
 
+            Debug.LogError(mod.Name);
+            scrollCanva.transform.GetChild(0).gameObject.SetActive(false); // ModListViewport
+            scrollCanva.transform.GetChild(1).gameObject.SetActive(false); // ScrollbarList
+            scrollCanva.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = mod.Name;
         }
 
         private void LoadList()
