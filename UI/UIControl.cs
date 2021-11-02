@@ -50,6 +50,11 @@ namespace ModManager
                 LoadList();
             }
         }
+        
+        public void HandleDetailsSettingsButton()
+        {
+
+        }
 
         private void LoadList()
         {
@@ -64,6 +69,10 @@ namespace ModManager
                     txt.LoadImage(mod.Icon);
                     tempGameObject.transform.GetChild(1).GetComponent<Image>().sprite = Sprite.Create(txt, new Rect(0, 0, txt.width, txt.height), new Vector2(0.5f, 0.5f));
                 }
+                // Details & Settings button
+                tempGameObject.transform.GetChild(2).name = mod.ID;
+                tempGameObject.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(HandleDetailsSettingsButton);
+
                 tempGameObject.transform.GetChild(3).GetComponent<Text>().text = "Author: " + mod.Author;
                 tempGameObject.transform.SetParent(scrollCanva.transform.GetChild(0).GetChild(0));
             }
