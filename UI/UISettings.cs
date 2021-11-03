@@ -90,11 +90,11 @@ namespace ModManager
                         sliderComponent.minValue = ss.minValue;
                         sliderComponent.maxValue = ss.maxValue;
 
-                        sliderComponent.onValueChanged.AddListener(SettingsSlider.HandlerSlider);
+                        sliderComponent.onValueChanged.AddListener(ss.HandlerSlider);
                         if(ss.funcToCall != null)
                             sliderComponent.onValueChanged.AddListener(ss.funcToCall);
 
-                        
+                        sliderTemplate.transform.SetParent(ui.scrollCanva.transform.GetChild(0).GetChild(0));
                         break;
                 }
             }

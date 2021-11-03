@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace ModManager
 {
@@ -12,7 +15,7 @@ namespace ModManager
         internal float minValue;
         internal float maxValue;
         internal UnityAction<float> funcToCall;
-        public readonly float value;
+        public float value;
 
         public SettingsSlider(float minValue, float maxValue)
         {
@@ -27,9 +30,10 @@ namespace ModManager
             this.funcToCall = funcToCall;
         }
 
-        public static void HandlerSlider(float value)
+        public void HandlerSlider(float value)
         {
-
+            base.parent.transform.GetChild(1).GetComponent<Text>().text = $"{value}";
+            this.value = value;
         }
     }
 }
