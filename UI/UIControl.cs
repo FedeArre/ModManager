@@ -57,7 +57,7 @@ namespace ModManager
         public void HandleDetailsSettingsButton()
         {
             string actualModId = EventSystem.current.currentSelectedGameObject.name;
-            Mod mod = ModLoader.GetModInstance(actualModId);
+            Mod mod = GetModById(actualModId);
             if (mod == null)
                 return;
 
@@ -110,6 +110,17 @@ namespace ModManager
             mod.enabled = arg0;
             ClearList(); 
             UISettings.GetInstance().LoadMenuOfMod(mod); // To-do optimize this (dont reload, do something faster)
+        }
+
+        public Mod GetModById(string modId)
+        {
+            foreach(Mod mod in ModLoader.mods)
+            {
+                if (mod.ID == modId)
+                    return mod;
+            }
+
+            return null;
         }
     }
 }
