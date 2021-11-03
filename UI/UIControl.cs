@@ -45,6 +45,7 @@ namespace ModManager
 
         public void HandleShowHideMenuButton()
         {
+            ClearList();
             scrollCanvaShown = !scrollCanvaShown;
             scrollCanva.SetActive(scrollCanvaShown); 
             if (!loadedMods)
@@ -60,13 +61,12 @@ namespace ModManager
             if (mod == null)
                 return;
 
-            Debug.LogError(mod.Name);
-            scrollCanva.transform.GetChild(0).gameObject.SetActive(false); // ModListViewport
-            scrollCanva.transform.GetChild(1).gameObject.SetActive(false); // ScrollbarList
-            scrollCanva.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = mod.Name;
+            scrollCanva.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = mod.Name; // Set title as mod name.
+            ClearList();
+            UISettings.LoadMenuOfMod(mod);
         }
 
-        private void LoadList()
+        public void LoadList()
         {
             foreach (Mod mod in ModLoader.mods)
             {
@@ -87,6 +87,16 @@ namespace ModManager
                 tempGameObject.transform.SetParent(scrollCanva.transform.GetChild(0).GetChild(0));
             }
             loadedMods = true;
+        }
+
+        public void ClearList()
+        {
+            Transform contentList = scrollCanva.transform.GetChild(0).GetChild(0);
+            for(int i = 0; i < contentList.childCount; i++)
+            {
+                GameObject.Destroy(contentList.GetChild(i));
+            }
+            loadedMods = false;
         }
     }
 }

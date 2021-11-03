@@ -425,6 +425,7 @@
     <Compile Include="UI\Settings\SettingsLabel.cs" />
     <Compile Include="UI\UIControl.cs" />
     <Compile Include="UI\UICreate.cs" />
+    <Compile Include="UI\UISettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
