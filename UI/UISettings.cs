@@ -52,19 +52,37 @@ namespace ModManager
             // Version and showing up "Mod settings" title
             modInfo.transform.GetChild(1).GetComponent<Text>().text = $"Version: {mod.Version}";
             modInfo.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = "";
+
+            ModSettings modSettings = null;
             foreach (ModSettings ms in ModManager.RegisteredMods)
             {
                 if(ms.modId == displayingModId)
                 {
                     if(ms.settingList.Count > 0)
                     {
+                        modSettings = ms;
                         modInfo.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = "Mod settings";
                     }
                 }
             }
-
             // Hooking it into the list.
             modInfo.transform.SetParent(ui.scrollCanva.transform.GetChild(0).GetChild(0));
+
+            // Now we start loading our settings.
+            if (modSettings == null)
+                return;
+
+            foreach(Settings setting in modSettings.settingList)
+            {
+                switch (setting)
+                {
+                    case SettingsLabel sl:
+                        GameObject go = GameObject.Instantiate(settLabelTemplate);
+                        go.transform.GetChild(0).GetComponent<Text>().text = sl.text;
+                        setting.parent = go;
+                        break;
+                }
+            }
         }
     }
 }

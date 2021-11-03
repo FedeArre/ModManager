@@ -9,6 +9,6 @@ namespace ModManager
 {
     public class Settings
     {
-        private GameObject parent;
+        public GameObject parent; // Holds the template always
     }
 }
