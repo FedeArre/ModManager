@@ -53,7 +53,7 @@ namespace ModManager
                 LoadList();
             }
         }
-        
+
         public void HandleDetailsSettingsButton()
         {
             string actualModId = EventSystem.current.currentSelectedGameObject.name;
@@ -94,9 +94,21 @@ namespace ModManager
             Transform contentList = scrollCanva.transform.GetChild(0).GetChild(0);
             for(int i = 0; i < contentList.childCount; i++)
             {
-                GameObject.Destroy(contentList.GetChild(i));
+                GameObject.Destroy(contentList.GetChild(i).gameObject);
             }
             loadedMods = false;
+        }
+
+        public void HandleEnableDisableMod(bool arg0)
+        {
+            string actualModId = EventSystem.current.currentSelectedGameObject.name;
+            Mod mod = ModLoader.GetModInstance(actualModId);
+            if (mod == null)
+                return;
+
+            mod.enabled = arg0;
+            ClearList(); 
+            UISettings.GetInstance().LoadMenuOfMod(mod); // To-do optimize this (dont reload, do something faster)
         }
     }
 }

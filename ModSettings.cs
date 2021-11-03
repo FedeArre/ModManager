@@ -8,8 +8,8 @@ namespace ModManager
 {
     public class ModSettings
     {
-        private string modId;
-        private List<Settings> settingList;
+        internal string modId;
+        internal List<Settings> settingList;
 
         public ModSettings(string modId)
         {

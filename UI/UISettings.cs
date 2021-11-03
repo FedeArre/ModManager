@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ModManager
 {
@@ -17,6 +19,8 @@ namespace ModManager
         // Templates of the settings in the prefab.
         internal GameObject settLabelTemplate;
         internal GameObject settSliderTemplate;
+
+        public string displayingModId;
 
         private UISettings()
         {
@@ -37,7 +41,30 @@ namespace ModManager
 
         public void LoadMenuOfMod(Mod mod)
         {
-            template = 
+            displayingModId = mod.ID;
+
+            GameObject modInfo = GameObject.Instantiate(templateMod);
+            // Toggle mod enabled or not
+            modInfo.transform.GetChild(0).GetComponent<Toggle>().isOn = mod.enabled;
+            modInfo.transform.GetChild(0).GetComponent<Toggle>().onValueChanged.AddListener(ui.HandleEnableDisableMod);
+            modInfo.transform.GetChild(0).name = displayingModId;
+
+            // Version and showing up "Mod settings" title
+            modInfo.transform.GetChild(1).GetComponent<Text>().text = $"Version: {mod.Version}";
+            modInfo.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = "";
+            foreach (ModSettings ms in ModManager.RegisteredMods)
+            {
+                if(ms.modId == displayingModId)
+                {
+                    if(ms.settingList.Count > 0)
+                    {
+                        modInfo.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = "Mod settings";
+                    }
+                }
+            }
+
+            // Hooking it into the list.
+            modInfo.transform.SetParent(ui.scrollCanva.transform.GetChild(0).GetChild(0));
         }
     }
 }
