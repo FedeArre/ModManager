@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 namespace ModManager
 {
-    class SettingsSlider : Settings
+    public class SettingsSlider : Settings
     {
         internal float minValue;
         internal float maxValue;

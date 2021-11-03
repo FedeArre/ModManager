@@ -23,5 +23,11 @@ namespace ModManager
             return settingLabel;
         }
 
+        public SettingsSlider AddSlider(float minValue, float maxValue)
+        {
+            SettingsSlider ss = new SettingsSlider(minValue, maxValue);
+            settingList.Add(ss);
+            return ss;
+        }
     }
 }

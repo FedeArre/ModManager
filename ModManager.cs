@@ -18,6 +18,7 @@ namespace ModManager
             UICreate.GetInstance();
 
             ModSettings ms = RegisterMod(ID);
+            ms.AddLabel("Hello world");
         }
 
         public static ModSettings RegisterMod(string modId)

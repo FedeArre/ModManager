@@ -94,6 +94,8 @@ namespace ModManager
                         if(ss.funcToCall != null)
                             sliderComponent.onValueChanged.AddListener(ss.funcToCall);
 
+                        setting.parent = sliderTemplate;
+
                         sliderTemplate.transform.SetParent(ui.scrollCanva.transform.GetChild(0).GetChild(0));
                         break;
                 }
