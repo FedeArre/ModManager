@@ -68,6 +68,7 @@ namespace ModManager
 
         public void LoadList()
         {
+            scrollCanva.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "Mod manager";
             foreach (Mod mod in ModLoader.mods)
             {
                 GameObject tempGameObject = GameObject.Instantiate(modTemplate);
