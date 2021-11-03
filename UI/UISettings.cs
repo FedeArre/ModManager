@@ -80,6 +80,8 @@ namespace ModManager
                         GameObject go = GameObject.Instantiate(settLabelTemplate);
                         go.transform.GetChild(0).GetComponent<Text>().text = sl.text;
                         setting.parent = go;
+
+                        go.transform.SetParent(ui.scrollCanva.transform.GetChild(0).GetChild(0));
                         break;
                 }
             }
