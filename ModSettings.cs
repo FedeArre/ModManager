@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine.Events;
 
 namespace ModManager
 {
@@ -26,6 +27,13 @@ namespace ModManager
         public SettingsSlider AddSlider(float minValue, float maxValue)
         {
             SettingsSlider ss = new SettingsSlider(minValue, maxValue);
+            settingList.Add(ss);
+            return ss;
+        }
+
+        public SettingsSlider AddSlider(float minValue, float maxValue, UnityAction<float> funtionToCall)
+        {
+            SettingsSlider ss = new SettingsSlider(minValue, maxValue, funtionToCall);
             settingList.Add(ss);
             return ss;
         }

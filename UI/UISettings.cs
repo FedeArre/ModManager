@@ -29,7 +29,7 @@ namespace ModManager
             // Using getchild would be faster if im not wrong but this is safer (at least while developing the mod).
             templateMod = GameObject.Find("ModInfoTemplate");
             settLabelTemplate = GameObject.Find("SettingLabelTemplate");
-            settSliderTemplate = GameObject.Find("SettingSlideremplate");
+            settSliderTemplate = GameObject.Find("SettingSliderTemplate");
         }
 
         public static UISettings GetInstance()
