@@ -77,11 +77,24 @@ namespace ModManager
                 switch (setting)
                 {
                     case SettingsLabel sl:
-                        GameObject go = GameObject.Instantiate(settLabelTemplate);
-                        go.transform.GetChild(0).GetComponent<Text>().text = sl.text;
-                        setting.parent = go;
+                        GameObject labelTemplate = GameObject.Instantiate(settLabelTemplate);
+                        labelTemplate.transform.GetChild(0).GetComponent<Text>().text = sl.text;
+                        setting.parent = labelTemplate;
 
-                        go.transform.SetParent(ui.scrollCanva.transform.GetChild(0).GetChild(0));
+                        labelTemplate.transform.SetParent(ui.scrollCanva.transform.GetChild(0).GetChild(0));
+                        break;
+                
+                    case SettingsSlider ss:
+                        GameObject sliderTemplate = GameObject.Instantiate(settSliderTemplate);
+                        Slider sliderComponent = sliderTemplate.transform.GetChild(0).GetComponent<Slider>();
+                        sliderComponent.minValue = ss.minValue;
+                        sliderComponent.maxValue = ss.maxValue;
+
+                        sliderComponent.onValueChanged.AddListener(SettingsSlider.HandlerSlider);
+                        if(ss.funcToCall != null)
+                            sliderComponent.onValueChanged.AddListener(ss.funcToCall);
+
+                        
                         break;
                 }
             }
