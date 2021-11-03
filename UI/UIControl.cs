@@ -63,7 +63,7 @@ namespace ModManager
 
             scrollCanva.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = mod.Name; // Set title as mod name.
             ClearList();
-            UISettings.LoadMenuOfMod(mod);
+            UISettings.GetInstance().LoadMenuOfMod(mod);
         }
 
         public void LoadList()
