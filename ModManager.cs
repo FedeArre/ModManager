@@ -13,16 +13,15 @@ namespace ModManager
 
         internal static List<ModSettings> RegisteredMods = new List<ModSettings>();
 
+        public ModManager()
+        {
+            UICreate.GetInstance();
+        }
         public static ModSettings RegisterMod(string modId)
         {
             ModSettings ms = new ModSettings(modId);
             RegisteredMods.Add(ms);
             return ms;
-        }
-
-        public ModManager()
-        {
-            UICreate.GetInstance();
         }
     }
 }

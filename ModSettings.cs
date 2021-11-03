@@ -9,10 +9,19 @@ namespace ModManager
     public class ModSettings
     {
         private string modId;
+        private List<Settings> settingList;
 
         public ModSettings(string modId)
         {
             this.modId = modId;
+            settingList = new List<Settings>();
         }
+        public SettingsLabel AddLabel(string text)
+        {
+            SettingsLabel settingLabel = new SettingsLabel(text);
+            settingList.Add(settingLabel);
+            return settingLabel;
+        }
+
     }
 }

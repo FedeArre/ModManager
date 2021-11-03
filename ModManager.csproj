@@ -421,6 +421,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="UI\Settings\Settings.cs" />
+    <Compile Include="UI\Settings\SettingsLabel.cs" />
     <Compile Include="UI\UIControl.cs" />
     <Compile Include="UI\UICreate.cs" />
   </ItemGroup>
