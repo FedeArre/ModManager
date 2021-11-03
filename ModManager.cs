@@ -20,7 +20,8 @@ namespace ModManager
             ModSettings ms = RegisterMod(ID);
             ms.AddLabel("Hello world");
             ms.AddLabel("This was done by code only!");
-            ms.AddSlider(4f, 6f);
+            ms.AddSlider(4f, 6f, 2);
+            ms.AddSlider(1f, 10f, 0);
         }
 
         public static ModSettings RegisterMod(string modId)

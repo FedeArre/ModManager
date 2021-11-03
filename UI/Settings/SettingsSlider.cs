@@ -15,22 +15,32 @@ namespace ModManager
         internal float minValue;
         internal float maxValue;
         internal int numberCount;
+        internal double defaultValue;
         internal UnityAction<float> funcToCall;
-        public float value;
+        public double value;
 
         public SettingsSlider(float minValue, float maxValue, int numberCount)
         {
             this.minValue = minValue;
             this.maxValue = maxValue;
             this.numberCount = numberCount;
+            defaultValue = minValue;
+        }
+        public SettingsSlider(float minValue, float maxValue, int numberCount, double defaultValue)
+        {
+            this.minValue = minValue;
+            this.maxValue = maxValue;
+            this.numberCount = numberCount;
+            this.defaultValue = defaultValue;
         }
 
-        public SettingsSlider(float minValue, float maxValue, int numberCount, UnityAction<float> funcToCall)
+        public SettingsSlider(float minValue, float maxValue, int numberCount, double defaultValue, UnityAction<float> funcToCall)
         {
             this.minValue = minValue;
             this.maxValue = maxValue;
             this.numberCount = numberCount;
             this.funcToCall = funcToCall;
+            this.defaultValue = defaultValue;
         }
 
         public void HandlerSlider(float value)

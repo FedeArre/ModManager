@@ -30,10 +30,15 @@ namespace ModManager
             settingList.Add(ss);
             return ss;
         }
-
-        public SettingsSlider AddSlider(float minValue, float maxValue, int numberCount, UnityAction<float> funtionToCall)
+        public SettingsSlider AddSlider(float minValue, float maxValue, int numberCount, double defaultValue)
         {
-            SettingsSlider ss = new SettingsSlider(minValue, maxValue, numberCount, funtionToCall);
+            SettingsSlider ss = new SettingsSlider(minValue, maxValue, numberCount, defaultValue);
+            settingList.Add(ss);
+            return ss;
+        }
+        public SettingsSlider AddSlider(float minValue, float maxValue, int numberCount, double defaultValue, UnityAction<float> funtionToCall)
+        {
+            SettingsSlider ss = new SettingsSlider(minValue, maxValue, numberCount, defaultValue, funtionToCall);
             settingList.Add(ss);
             return ss;
         }
