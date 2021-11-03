@@ -24,16 +24,16 @@ namespace ModManager
             return settingLabel;
         }
 
-        public SettingsSlider AddSlider(float minValue, float maxValue)
+        public SettingsSlider AddSlider(float minValue, float maxValue, int numberCount)
         {
-            SettingsSlider ss = new SettingsSlider(minValue, maxValue);
+            SettingsSlider ss = new SettingsSlider(minValue, maxValue, numberCount);
             settingList.Add(ss);
             return ss;
         }
 
-        public SettingsSlider AddSlider(float minValue, float maxValue, UnityAction<float> funtionToCall)
+        public SettingsSlider AddSlider(float minValue, float maxValue, int numberCount, UnityAction<float> funtionToCall)
         {
-            SettingsSlider ss = new SettingsSlider(minValue, maxValue, funtionToCall);
+            SettingsSlider ss = new SettingsSlider(minValue, maxValue, numberCount, funtionToCall);
             settingList.Add(ss);
             return ss;
         }
