@@ -89,6 +89,10 @@ namespace ModManager
                         Slider sliderComponent = sliderTemplate.transform.GetChild(0).GetComponent<Slider>();
                         sliderComponent.minValue = ss.minValue;
                         sliderComponent.maxValue = ss.maxValue;
+                        if(ss.numberCount == 0)
+                        {
+                            sliderComponent.wholeNumbers = true;
+                        }
 
                         sliderComponent.onValueChanged.AddListener(ss.HandlerSlider);
                         if(ss.funcToCall != null)
