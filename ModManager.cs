@@ -24,6 +24,7 @@ namespace ModManager
             ms.AddSlider(1f, 10f, 0);
             ms.AddInput();
             ms.AddInput("bad gui lul");
+            ms.AddButton("hi");
         }
 
         public static ModSettings RegisterMod(string modId)

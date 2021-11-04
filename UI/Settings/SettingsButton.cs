@@ -8,6 +8,7 @@ namespace ModManager
 {
     public class SettingsButton : Settings
     {
+        // TODO i still didn't decided how to implement the button handler. Using delegates? Passing the function as reference?
         internal string text;
 
         public SettingsButton(string text)
