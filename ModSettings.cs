@@ -43,5 +43,12 @@ namespace ModManager
             settingList.Add(ss);
             return ss;
         }
+
+        public SettingsInput AddInput(string placeholder = "")
+        {
+            SettingsInput si = new SettingsInput(placeholder);
+            settingList.Add(si);
+            return si;
+        }
     }
 }

@@ -19,6 +19,9 @@ namespace ModManager
         // Templates of the settings in the prefab.
         internal GameObject settLabelTemplate;
         internal GameObject settSliderTemplate;
+        internal GameObject settInputTemplate;
+        internal GameObject settCheckboxTemplate;
+        internal GameObject settButtonTemplate;
 
         public string displayingModId;
 
@@ -30,6 +33,9 @@ namespace ModManager
             templateMod = GameObject.Find("ModInfoTemplate");
             settLabelTemplate = GameObject.Find("SettingLabelTemplate");
             settSliderTemplate = GameObject.Find("SettingSliderTemplate");
+            settInputTemplate = GameObject.Find("SettingInputTemplate");
+            settCheckboxTemplate = GameObject.Find("SettingCheckboxTemplate");
+            settButtonTemplate = GameObject.Find("SettingButtonTemplate");
         }
 
         public static UISettings GetInstance()
@@ -104,6 +110,16 @@ namespace ModManager
                         setting.parent = sliderTemplate;
 
                         sliderTemplate.transform.SetParent(ui.scrollCanva.transform.GetChild(0).GetChild(0));
+                        break;
+                    case SettingsInput si:
+                        GameObject inputTemplate = GameObject.Instantiate(settInputTemplate);
+                        TMP_InputField input = inputTemplate.transform.GetChild(0).GetComponent<TMP_InputField>();
+
+                        inputTemplate.transform.GetChild(0).GetChild(0).GetComponent<TMP_Text>().text = si.placeholder;
+                        input.onValueChanged.AddListener(si.HandleNewValue);
+
+                        setting.parent = inputTemplate;
+                        inputTemplate.transform.SetParent(ui.scrollCanva.transform.GetChild(0).GetChild(0));
                         break;
                 }
             }
