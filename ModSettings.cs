@@ -36,6 +36,7 @@ namespace ModManager
             settingList.Add(ss);
             return ss;
         }
+
         public SettingsSlider AddSlider(float minValue, float maxValue, int numberCount, double defaultValue, UnityAction<float> funtionToCall)
         {
             SettingsSlider ss = new SettingsSlider(minValue, maxValue, numberCount, defaultValue, funtionToCall);

@@ -422,6 +422,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="UI\Settings\Settings.cs" />
+    <Compile Include="UI\Settings\SettingsButton.cs" />
+    <Compile Include="UI\Settings\SettingsCheckbox.cs" />
+    <Compile Include="UI\Settings\SettingsInput.cs" />
     <Compile Include="UI\Settings\SettingsLabel.cs" />
     <Compile Include="UI\Settings\SettingsSlider.cs" />
     <Compile Include="UI\UIControl.cs" />
