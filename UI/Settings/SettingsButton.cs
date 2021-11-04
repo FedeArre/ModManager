@@ -6,8 +6,18 @@ using System.Threading.Tasks;
 
 namespace ModManager
 {
-    class SettingsButton : Settings
+    public class SettingsButton : Settings
     {
+        internal string text;
 
+        public SettingsButton(string text)
+        {
+            this.text = text;
+        }
+
+        internal void HandleClick()
+        {
+            
+        }
     }
 }

@@ -115,11 +115,22 @@ namespace ModManager
                         GameObject inputTemplate = GameObject.Instantiate(settInputTemplate);
                         TMP_InputField input = inputTemplate.transform.GetChild(0).GetComponent<TMP_InputField>();
 
-                        inputTemplate.transform.GetChild(0).GetChild(0).GetComponent<TMP_Text>().text = si.placeholder;
+                        //inputTemplate.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = si.placeholder; TODO
+
                         input.onValueChanged.AddListener(si.HandleNewValue);
 
                         setting.parent = inputTemplate;
                         inputTemplate.transform.SetParent(ui.scrollCanva.transform.GetChild(0).GetChild(0));
+                        break;
+
+                    case SettingsButton sb:
+                        GameObject buttonTemplate = GameObject.Instantiate(settButtonTemplate);
+                        Button butt = buttonTemplate.transform.GetChild(0).GetComponent<Button>();
+
+                        buttonTemplate.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = sb.text;
+                        butt.onClick.AddListener(sb.HandleClick);
+
+                        buttonTemplate.transform.SetParent(ui.scrollCanva.transform.GetChild(0).GetChild(0));
                         break;
                 }
             }

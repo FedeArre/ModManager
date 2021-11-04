@@ -50,5 +50,12 @@ namespace ModManager
             settingList.Add(si);
             return si;
         }
+
+        public SettingsInput AddButton(string text)
+        {
+            Settings sb = new SettingsButton(text);
+            settingList.Add(sb);
+            return sb;
+        }
     }
 }
