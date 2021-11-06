@@ -57,5 +57,12 @@ namespace ModManager
             settingList.Add(sb);
             return sb;
         }
+
+        public SettingsCheckbox AddToggle(string text, bool ticked = false)
+        {
+            SettingsCheckbox sc = new SettingsCheckbox(text, ticked);
+            settingList.Add(sc);
+            return sc;
+        }
     }
 }

@@ -6,7 +6,20 @@ using System.Threading.Tasks;
 
 namespace ModManager
 {
-    class SettingsCheckbox : Settings
+    public class SettingsCheckbox : Settings
     {
+        public bool ticked;
+        public string text;
+
+        public SettingsCheckbox(string text, bool ticked)
+        {
+            this.text = text;
+            this.ticked = ticked;
+        }
+
+        internal void HandleChange(bool value)
+        {
+            ticked = value;
+        }
     }
 }

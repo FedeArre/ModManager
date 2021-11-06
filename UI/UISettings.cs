@@ -132,6 +132,18 @@ namespace ModManager
 
                         buttonTemplate.transform.SetParent(ui.scrollCanva.transform.GetChild(0).GetChild(0));
                         break;
+
+                    case SettingsCheckbox sc:
+                        GameObject checkboxTemplate = GameObject.Instantiate(settCheckboxTemplate);
+                        Toggle toggle = checkboxTemplate.transform.GetChild(0).GetComponent<Toggle>();
+
+                        toggle.isOn = sc.ticked;
+                        toggle.onValueChanged.AddListener(sc.HandleChange);
+
+                        checkboxTemplate.transform.GetChild(1).GetComponent<Text>().text = sc.text;
+
+                        checkboxTemplate.transform.SetParent(ui.scrollCanva.transform.GetChild(0).GetChild(0));
+                        break;
                 }
             }
         }
