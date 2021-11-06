@@ -18,7 +18,8 @@ namespace ModManager
 
         internal void HandleClick()
         {
-            
+
+            base.SettingsUpdated();
         }
     }
 }

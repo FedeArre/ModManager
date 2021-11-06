@@ -19,6 +19,8 @@ namespace ModManager
         public void HandleNewValue(string str)
         {
             this.value = str;
+
+            base.SettingsUpdated();
         }
     }
 }

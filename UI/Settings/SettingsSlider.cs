@@ -48,6 +48,8 @@ namespace ModManager
             double newValue = Math.Round((double)value, numberCount);
             base.parent.transform.GetChild(1).GetComponent<Text>().text = $"{newValue}";
             this.value = newValue;
+
+            base.SettingsUpdated();
         }
     }
 }

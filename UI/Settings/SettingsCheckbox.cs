@@ -20,6 +20,7 @@ namespace ModManager
         internal void HandleChange(bool value)
         {
             ticked = value;
+            base.SettingsUpdated();
         }
     }
 }

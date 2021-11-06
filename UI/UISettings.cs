@@ -144,6 +144,7 @@ namespace ModManager
 
                         checkboxTemplate.transform.SetParent(ui.scrollCanva.transform.GetChild(0).GetChild(0));
                         break;
+
                 }
             }
         }
