@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,15 +11,15 @@ namespace ModManager
 {
     public class ModSettings
     {
-        internal string modId;
+        internal Mod modInstance;
         internal List<Settings> settingList;
         
         public delegate void SettingsUpdateDelegate();
         public event SettingsUpdateDelegate SettingsUpdated;
 
-        public ModSettings(string modId)
+        public ModSettings(Mod mod)
         {
-            this.modId = modId;
+            this.modInstance = mod;
             settingList = new List<Settings>();
         }
 
@@ -36,7 +38,47 @@ namespace ModManager
 
         public void LoadSettings()
         {
+            // TODO add trycatchs to this function
+            // Check if the mod settings directory exists, if not create it.
+            if (!Directory.Exists(Utils.MODS_SETTINGS_FOLDER_PATH))
+            {
+                Directory.CreateDirectory(Utils.MODS_SETTINGS_FOLDER_PATH);
+            }
 
+            if(!File.Exists(Utils.MODS_FOLDER_PATH + $"/{modInstance.ID}.json"))
+            {
+                File.Create(Utils.MODS_FOLDER_PATH + $"/{modInstance.ID}.json").Dispose();
+            }
+
+            Dictionary<string, object> values;
+
+            using (StreamReader r = new StreamReader(Utils.MODS_SETTINGS_FOLDER_PATH + $"/{modInstance.ID}.json"))
+            {
+                string json = r.ReadToEnd();
+                values = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
+            }
+
+            foreach (KeyValuePair<string, object> entry in values)
+            {
+                Settings s = Utils.GetSettingByIdInList(settingList, entry.Key);
+                if (s == null)
+                    continue;
+
+                switch (s)
+                {
+                    case SettingsCheckbox sc:
+                        sc.ticked = (bool) entry.Value;
+                        break;
+
+                    case SettingsSlider ss:
+                        ss.value = (double) entry.Value;
+                        break;
+
+                    case SettingsInput si:
+                        si.value = (string) entry.Value;
+                        break;
+                }
+            }
         }
 
         public SettingsLabel AddLabel(string id, string text)

@@ -62,7 +62,7 @@ namespace ModManager
             ModSettings modSettings = null;
             foreach (ModSettings ms in ModManager.RegisteredMods)
             {
-                if(ms.modId == displayingModId)
+                if(ms.modInstance.ID == displayingModId)
                 {
                     if(ms.settingList.Count > 0)
                     {

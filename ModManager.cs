@@ -17,12 +17,12 @@ namespace ModManager
         {
             UICreate.GetInstance();
 
-            ModSettings ms = RegisterMod(ID);
+            ModSettings ms = RegisterMod(this);
         }
 
-        public static ModSettings RegisterMod(string modId)
+        public static ModSettings RegisterMod(Mod mod)
         {
-            ModSettings ms = new ModSettings(modId);
+            ModSettings ms = new ModSettings(mod);
             RegisteredMods.Add(ms);
             return ms;
         }
