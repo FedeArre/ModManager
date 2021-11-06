@@ -8,8 +8,10 @@ namespace ModManager
 {
     public class SettingsButton : Settings
     {
-        // TODO i still didn't decided how to implement the button handler. Using delegates? Passing the function as reference?
         internal string text;
+
+        public delegate void ButtonClickDelegate();
+        public event ButtonClickDelegate OnButtonClick;
 
         public SettingsButton(string text)
         {
@@ -18,6 +20,8 @@ namespace ModManager
 
         internal void HandleClick()
         {
+            if(OnButtonClick != null)
+                OnButtonClick.Invoke();
 
             base.SettingsUpdated();
         }
