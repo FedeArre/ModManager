@@ -18,6 +18,8 @@ namespace ModManager
             UICreate.GetInstance();
 
             ModSettings ms = RegisterMod(this);
+            ms.AddSlider("slider1", 2, 5, 0);
+            ms.LoadSettings();
         }
 
         public static ModSettings RegisterMod(Mod mod)

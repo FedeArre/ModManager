@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace ModManager
@@ -13,12 +14,14 @@ namespace ModManager
     {
         internal Mod modInstance;
         internal List<Settings> settingList;
-        
+        internal Dictionary<string, object> values;
+
         public delegate void SettingsUpdateDelegate();
         public event SettingsUpdateDelegate SettingsUpdated;
 
         public ModSettings(Mod mod)
         {
+            values = new Dictionary<string, object>();
             this.modInstance = mod;
             settingList = new List<Settings>();
         }
@@ -45,19 +48,23 @@ namespace ModManager
                 Directory.CreateDirectory(Utils.MODS_SETTINGS_FOLDER_PATH);
             }
 
-            if(!File.Exists(Utils.MODS_FOLDER_PATH + $"/{modInstance.ID}.json"))
+            if(!File.Exists(Utils.MODS_SETTINGS_FOLDER_PATH + $"/{modInstance.ID}.json"))
             {
-                File.Create(Utils.MODS_FOLDER_PATH + $"/{modInstance.ID}.json").Dispose();
+                File.Create(Utils.MODS_SETTINGS_FOLDER_PATH + $"/{modInstance.ID}.json").Dispose();
             }
-
-            Dictionary<string, object> values;
 
             using (StreamReader r = new StreamReader(Utils.MODS_SETTINGS_FOLDER_PATH + $"/{modInstance.ID}.json"))
             {
+                Debug.LogError("using");
                 string json = r.ReadToEnd();
-                values = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
+                Debug.LogError(json);
+                Debug.LogError(json.Length);
+                if(json.Length > 1)
+                    values = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
             }
 
+            Debug.LogError(values.Count);
+            Debug.LogError(values);
             foreach (KeyValuePair<string, object> entry in values)
             {
                 Settings s = Utils.GetSettingByIdInList(settingList, entry.Key);
@@ -101,15 +108,6 @@ namespace ModManager
         public SettingsSlider AddSlider(string id, float minValue, float maxValue, int numberCount, double defaultValue)
         {
             SettingsSlider ss = new SettingsSlider(id, minValue, maxValue, numberCount, defaultValue);
-            ss.modSettings = this;
-            settingList.Add(ss);
-
-            return ss;
-        }
-
-        public SettingsSlider AddSlider(string id, float minValue, float maxValue, int numberCount, double defaultValue, UnityAction<float> funtionToCall)
-        {
-            SettingsSlider ss = new SettingsSlider(id, minValue, maxValue, numberCount, defaultValue, funtionToCall);
             ss.modSettings = this;
             settingList.Add(ss);
 

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +18,6 @@ namespace ModManager
         internal float maxValue;
         internal int numberCount;
         internal double defaultValue;
-        internal UnityAction<float> funcToCall;
         public double value;
 
         public SettingsSlider(string id, float minValue, float maxValue, int numberCount)
@@ -38,22 +39,29 @@ namespace ModManager
             this.defaultValue = defaultValue;
         }
 
-        public SettingsSlider(string id, float minValue, float maxValue, int numberCount, double defaultValue, UnityAction<float> funcToCall)
+        internal void HandlerSlider(float value)
         {
-            base.id = id;
-
-            this.minValue = minValue;
-            this.maxValue = maxValue;
-            this.numberCount = numberCount;
-            this.funcToCall = funcToCall;
-            this.defaultValue = defaultValue;
-        }
-
-        public void HandlerSlider(float value)
-        {
+            Debug.LogError(value);
             double newValue = Math.Round((double)value, numberCount);
             base.parent.transform.GetChild(1).GetComponent<Text>().text = $"{newValue}";
             this.value = newValue;
+            Debug.LogError(this.value);
+
+            // Saving.
+            if (modSettings.values.TryGetValue(base.id, out object val))
+            {
+                modSettings.values[base.id] = this.value;
+            } 
+            else
+            {
+                modSettings.values.Add(base.id, this.value);
+            }
+
+            File.Create(Utils.MODS_FOLDER_PATH + $"/{base.id}.json").Dispose();
+            using (TextWriter tw = new StreamWriter(Utils.MODS_SETTINGS_FOLDER_PATH + $"/{base.modSettings.modInstance.ID}.json"))
+            {
+                tw.Write(JsonConvert.SerializeObject(modSettings.values));
+            }
 
             base.SettingsUpdated();
         }

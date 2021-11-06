@@ -104,8 +104,6 @@ namespace ModManager
                         }
 
                         sliderComponent.onValueChanged.AddListener(ss.HandlerSlider);
-                        if(ss.funcToCall != null)
-                            sliderComponent.onValueChanged.AddListener(ss.funcToCall);
 
                         setting.parent = sliderTemplate;
 
@@ -130,6 +128,8 @@ namespace ModManager
                         buttonTemplate.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = sb.text;
                         butt.onClick.AddListener(sb.HandleClick);
 
+                        setting.parent = buttonTemplate;
+
                         buttonTemplate.transform.SetParent(ui.scrollCanva.transform.GetChild(0).GetChild(0));
                         break;
 
@@ -139,6 +139,8 @@ namespace ModManager
 
                         toggle.isOn = sc.ticked;
                         toggle.onValueChanged.AddListener(sc.HandleChange);
+
+                        setting.parent = checkboxTemplate;
 
                         checkboxTemplate.transform.GetChild(1).GetComponent<Text>().text = sc.text;
 
