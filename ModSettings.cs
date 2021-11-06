@@ -105,14 +105,6 @@ namespace ModManager
 
             return ss;
         }
-        public SettingsSlider AddSlider(string id, float minValue, float maxValue, int numberCount, double defaultValue)
-        {
-            SettingsSlider ss = new SettingsSlider(id, minValue, maxValue, numberCount, defaultValue);
-            ss.modSettings = this;
-            settingList.Add(ss);
-
-            return ss;
-        }
 
         public SettingsInput AddInput(string id, string placeholder = "")
         {

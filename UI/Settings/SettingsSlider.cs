@@ -17,7 +17,6 @@ namespace ModManager
         internal float minValue;
         internal float maxValue;
         internal int numberCount;
-        internal double defaultValue;
         public double value;
 
         public SettingsSlider(string id, float minValue, float maxValue, int numberCount)
@@ -27,16 +26,6 @@ namespace ModManager
             this.minValue = minValue;
             this.maxValue = maxValue;
             this.numberCount = numberCount;
-            defaultValue = minValue;
-        }
-        public SettingsSlider(string id, float minValue, float maxValue, int numberCount, double defaultValue)
-        {
-            base.id = id;
-
-            this.minValue = minValue;
-            this.maxValue = maxValue;
-            this.numberCount = numberCount;
-            this.defaultValue = defaultValue;
         }
 
         internal void HandlerSlider(float value)

@@ -95,8 +95,8 @@ namespace ModManager
                         Slider sliderComponent = sliderTemplate.transform.GetChild(0).GetComponent<Slider>();
                         sliderComponent.minValue = ss.minValue;
                         sliderComponent.maxValue = ss.maxValue;
-                        sliderComponent.value = (float) ss.defaultValue;
-                        sliderTemplate.transform.GetChild(1).GetComponent<Text>().text = $"{ss.defaultValue}";
+                        sliderComponent.value = (float) ss.value;
+                        sliderTemplate.transform.GetChild(1).GetComponent<Text>().text = $"{ss.value}";
 
                         if(ss.numberCount == 0)
                         {
