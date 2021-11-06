@@ -13,8 +13,9 @@ namespace ModManager
         public delegate void ButtonClickDelegate();
         public event ButtonClickDelegate OnButtonClick;
 
-        public SettingsButton(string text)
+        public SettingsButton(string id, string text)
         {
+            base.id = id;
             this.text = text;
         }
 

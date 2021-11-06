@@ -11,8 +11,9 @@ namespace ModManager
         public bool ticked;
         public string text;
 
-        public SettingsCheckbox(string text, bool ticked)
+        public SettingsCheckbox(string id, string text, bool ticked)
         {
+            base.id = id;
             this.text = text;
             this.ticked = ticked;
         }

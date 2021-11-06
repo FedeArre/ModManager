@@ -11,8 +11,9 @@ namespace ModManager
         internal string placeholder;
         public string value;
 
-        public SettingsInput(string placeholder)
+        public SettingsInput(string id, string placeholder)
         {
+            base.id = id;
             this.placeholder = placeholder;
         }
 

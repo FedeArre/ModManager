@@ -11,8 +11,9 @@ namespace ModManager
     {
         public string text;
 
-        public SettingsLabel(string text)
+        public SettingsLabel(string id, string text)
         {
+            base.id = id;
             this.text = text;
         }
     }

@@ -34,62 +34,67 @@ namespace ModManager
             }
         }
 
-        public SettingsLabel AddLabel(string text)
+        public void LoadSettings()
         {
-            SettingsLabel sl = new SettingsLabel(text);
+
+        }
+
+        public SettingsLabel AddLabel(string id, string text)
+        {
+            SettingsLabel sl = new SettingsLabel(id, text);
             sl.modSettings = this;
             settingList.Add(sl);
 
             return sl;
         }
 
-        public SettingsSlider AddSlider(float minValue, float maxValue, int numberCount)
+        public SettingsSlider AddSlider(string id, float minValue, float maxValue, int numberCount)
         {
-            SettingsSlider ss = new SettingsSlider(minValue, maxValue, numberCount);
+            SettingsSlider ss = new SettingsSlider(id, minValue, maxValue, numberCount);
             ss.modSettings = this;
             settingList.Add(ss);
 
             return ss;
         }
-        public SettingsSlider AddSlider(float minValue, float maxValue, int numberCount, double defaultValue)
+        public SettingsSlider AddSlider(string id, float minValue, float maxValue, int numberCount, double defaultValue)
         {
-            SettingsSlider ss = new SettingsSlider(minValue, maxValue, numberCount, defaultValue);
-            ss.modSettings = this;
-            settingList.Add(ss);
-
-            return ss;
-        }
-
-        public SettingsSlider AddSlider(float minValue, float maxValue, int numberCount, double defaultValue, UnityAction<float> funtionToCall)
-        {
-            SettingsSlider ss = new SettingsSlider(minValue, maxValue, numberCount, defaultValue, funtionToCall);
+            SettingsSlider ss = new SettingsSlider(id, minValue, maxValue, numberCount, defaultValue);
             ss.modSettings = this;
             settingList.Add(ss);
 
             return ss;
         }
 
-        public SettingsInput AddInput(string placeholder = "")
+        public SettingsSlider AddSlider(string id, float minValue, float maxValue, int numberCount, double defaultValue, UnityAction<float> funtionToCall)
         {
-            SettingsInput si = new SettingsInput(placeholder);
+            SettingsSlider ss = new SettingsSlider(id, minValue, maxValue, numberCount, defaultValue, funtionToCall);
+            ss.modSettings = this;
+            settingList.Add(ss);
+
+            return ss;
+        }
+
+        public SettingsInput AddInput(string id, string placeholder = "")
+        {
+            SettingsInput si = new SettingsInput(id, placeholder);
             si.modSettings = this;
             settingList.Add(si);
 
             return si;
         }
 
-        public SettingsButton AddButton(string text)
+        public SettingsButton AddButton(string id, string text)
         {
-            SettingsButton sb = new SettingsButton(text);
+            SettingsButton sb = new SettingsButton(id, text);
             sb.modSettings = this;
             settingList.Add(sb);
 
             return sb;
         }
 
-        public SettingsCheckbox AddToggle(string text, bool ticked = false)
+        public SettingsCheckbox AddToggle(string id, string text, bool ticked = false)
         {
-            SettingsCheckbox sc = new SettingsCheckbox(text, ticked);
+            SettingsCheckbox sc = new SettingsCheckbox(id, text, ticked);
             sc.modSettings = this;
             settingList.Add(sc);
 

@@ -9,7 +9,8 @@ namespace ModManager
 {
     public class Settings
     {
-        public GameObject parent; // Holds the template always
+        public string id;
+        public GameObject parent; // Holds the template
         public ModSettings modSettings;
 
         internal void SettingsUpdated()
