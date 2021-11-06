@@ -22,6 +22,11 @@ namespace ModManager
             ms.LoadSettings();
         }
 
+        public override void OnMenuLoad()
+        {
+            GameObject.Destroy(GameObject.Find("VersionNumber"));
+        }
+
         public static ModSettings RegisterMod(Mod mod)
         {
             ModSettings ms = new ModSettings(mod);

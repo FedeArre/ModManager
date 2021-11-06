@@ -22,8 +22,9 @@ namespace ModManager
 
             canvas = bundle.LoadAsset<GameObject>("Canvas");
             canvas = GameObject.Instantiate(canvas);
-            GameObject.DontDestroyOnLoad(canvas);
 
+            GameObject.DontDestroyOnLoad(canvas);
+            
             UIControl.GetInstance().canvas = canvas;
         }
 
