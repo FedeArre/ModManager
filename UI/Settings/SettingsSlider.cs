@@ -30,11 +30,9 @@ namespace ModManager
 
         internal void HandlerSlider(float value)
         {
-            Debug.LogError(value);
             double newValue = Math.Round((double)value, numberCount);
             base.parent.transform.GetChild(1).GetComponent<Text>().text = $"{newValue}";
             this.value = newValue;
-            Debug.LogError(this.value);
 
             // Saving.
             if (modSettings.values.TryGetValue(base.id, out object val))

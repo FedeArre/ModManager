@@ -64,16 +64,11 @@ namespace ModManager
 
             using (StreamReader r = new StreamReader(Utils.MODS_SETTINGS_FOLDER_PATH + $"/{modInstance.ID}.json"))
             {
-                Debug.LogError("using");
                 string json = r.ReadToEnd();
-                Debug.LogError(json);
-                Debug.LogError(json.Length);
                 if(json.Length > 1)
                     values = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
             }
 
-            Debug.LogError(values.Count);
-            Debug.LogError(values);
             foreach (KeyValuePair<string, object> entry in values)
             {
                 Settings s = Utils.GetSettingByIdInList(settingList, entry.Key);
@@ -92,6 +87,9 @@ namespace ModManager
 
                     case SettingsInput si:
                         si.value = (string) entry.Value;
+                        break;
+                    case SettingsKeybind sk:
+                        sk.selectedKey = (KeyCode) entry.Value;
                         break;
                 }
             }
