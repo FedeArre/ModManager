@@ -18,7 +18,7 @@ namespace ModManager
         /// <param name="list">List of settings to check</param>
         /// <param name="id">The id of the setting</param>
         /// <returns>The setting object (base) if exists, null otherwise </returns>
-        public static Settings GetSettingByIdInList(List<Settings> list, string id)
+        internal static Settings GetSettingByIdInList(List<Settings> list, string id)
         {
             foreach(Settings s in list)
             {
@@ -34,7 +34,7 @@ namespace ModManager
         /// </summary>
         /// <param name="modId">The id of the mod</param>
         /// <returns>The mod instance if the id exists, null otherwise</returns>
-        public static Mod GetModById(string modId)
+        internal static Mod GetModById(string modId)
         {
             foreach (Mod mod in ModLoader.mods)
             {
