@@ -45,6 +45,10 @@ namespace ModManager
             return instance;
         }
 
+        /// <summary>
+        /// Loads the settings menu (including mod info) of the provided Mod. 
+        /// </summary>
+        /// <param name="mod">The Mod instance, can't be null</param>
         public void LoadMenuOfMod(Mod mod)
         {
             displayingModId = mod.ID;
@@ -113,7 +117,7 @@ namespace ModManager
                         GameObject inputTemplate = GameObject.Instantiate(settInputTemplate);
                         TMP_InputField input = inputTemplate.transform.GetChild(0).GetComponent<TMP_InputField>();
 
-                        //inputTemplate.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = si.placeholder; TODO
+                        //inputTemplate.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = si.placeholder; TODO: I didn't found which component handles the text. Is a TMP but i didn't found which
 
                         input.onValueChanged.AddListener(si.HandleNewValue);
 

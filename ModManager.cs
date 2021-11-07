@@ -26,9 +26,14 @@ namespace ModManager
 
         public override void OnMenuLoad()
         {
-            GameObject.Destroy(GameObject.Find("VersionNumber"));
+            GameObject.Destroy(GameObject.Find("VersionNumber")); // Fixes broken "Mods" button due to overlapping.
         }
 
+        /// <summary>
+        /// This function registers a mod into the mod manager.
+        /// </summary>
+        /// <param name="mod">The mod instance of the mod to register</param>
+        /// <returns>A unique ModSettings instance for the mod</returns>
         public static ModSettings RegisterMod(Mod mod)
         {
             ModSettings ms = new ModSettings(mod);

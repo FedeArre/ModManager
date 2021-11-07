@@ -26,11 +26,17 @@ namespace ModManager
             settingList = new List<Settings>();
         }
 
+        /// <summary>
+        /// Internally called function from a Settings object to indicate that a setting was updated.
+        /// </summary>
         internal void settingsUpdate()
         {
             OnModSettingsUpdate();
         }
 
+        /// <summary>
+        /// Invokes the SettingsUpdated event.
+        /// </summary>
         protected virtual void OnModSettingsUpdate()
         {
             if(SettingsUpdated != null)
@@ -39,6 +45,9 @@ namespace ModManager
             }
         }
 
+        /// <summary>
+        /// Loads all the mod's settings. Note that you have to use it after registering your settings!
+        /// </summary>
         public void LoadSettings()
         {
             // TODO add trycatchs to this function
@@ -88,6 +97,12 @@ namespace ModManager
             }
         }
 
+        /// <summary>
+        /// Creates a "Label" setting.
+        /// </summary>
+        /// <param name="id">The id of the setting, has to be unique</param>
+        /// <param name="text">The text of the label</param>
+        /// <returns>A SettingLabel instance</returns>
         public SettingsLabel AddLabel(string id, string text)
         {
             SettingsLabel sl = new SettingsLabel(id, text);
@@ -97,6 +112,14 @@ namespace ModManager
             return sl;
         }
 
+        /// <summary>
+        /// Adds a "Slider" setting.
+        /// </summary>
+        /// <param name="id">The id of the setting, has to be unique</param>
+        /// <param name="minValue">The minimum value that the slider will go</param>
+        /// <param name="maxValue">The maximum value that the slider will go</param>
+        /// <param name="numberCount">Number of decimals to count. Use 0 for integers</param>
+        /// <returns>A SettingSlider instance</returns>
         public SettingsSlider AddSlider(string id, float minValue, float maxValue, int numberCount)
         {
             SettingsSlider ss = new SettingsSlider(id, minValue, maxValue, numberCount);
@@ -106,6 +129,12 @@ namespace ModManager
             return ss;
         }
 
+        /// <summary>
+        /// Adds a "Input" setting.
+        /// </summary>
+        /// <param name="id">The id of the setting, has to be unique</param>
+        /// <param name="placeholder">The placeholder text (shows only when input is empty)</param>
+        /// <returns>A SettingsInput instance</returns>
         public SettingsInput AddInput(string id, string placeholder = "")
         {
             SettingsInput si = new SettingsInput(id, placeholder);
@@ -115,6 +144,13 @@ namespace ModManager
             return si;
         }
 
+        /// <summary>
+        /// Adds a "Button" setting
+        /// TODO: Add a way to handling the buttons clicks using events
+        /// </summary>
+        /// <param name="id">The id of the setting, has to be unique</param>
+        /// <param name="text">The text inside the button</param>
+        /// <returns>A SettingsButton instance</returns>
         public SettingsButton AddButton(string id, string text)
         {
             SettingsButton sb = new SettingsButton(id, text);
@@ -124,9 +160,15 @@ namespace ModManager
             return sb;
         }
 
-        public SettingsCheckbox AddToggle(string id, string text, bool ticked = false)
+        /// <summary>
+        /// Adds a "Toggle" (also known as Checkbox) setting
+        /// </summary>
+        /// <param name="id">The id of the setting, has to be unique</param>
+        /// <param name="text">The text that will be located next to the toggle</param>
+        /// <returns>A SettingsCheckbox instance</returns>
+        public SettingsCheckbox AddToggle(string id, string text)
         {
-            SettingsCheckbox sc = new SettingsCheckbox(id, text, ticked);
+            SettingsCheckbox sc = new SettingsCheckbox(id, text, false);
             sc.modSettings = this;
             settingList.Add(sc);
 
