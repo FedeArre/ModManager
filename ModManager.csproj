@@ -442,6 +442,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Canvas.prefab" />
     <None Include="packages.config" />
     <None Include="Resources\ui" />
   </ItemGroup>
