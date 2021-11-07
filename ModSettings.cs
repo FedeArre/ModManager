@@ -102,10 +102,11 @@ namespace ModManager
         /// </summary>
         /// <param name="id">The id of the setting, has to be unique</param>
         /// <param name="text">The text of the label</param>
+        /// <param name="isTitle">If the label is a title or not</param>
         /// <returns>A SettingLabel instance</returns>
-        public SettingsLabel AddLabel(string id, string text)
+        public SettingsLabel AddLabel(string id, string text, bool isTitle)
         {
-            SettingsLabel sl = new SettingsLabel(id, text);
+            SettingsLabel sl = new SettingsLabel(id, text, isTitle);
             sl.modSettings = this;
             settingList.Add(sl);
 

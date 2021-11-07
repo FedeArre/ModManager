@@ -21,6 +21,7 @@ namespace ModManager
 
             ModSettings ms = RegisterMod(this);
             ms.AddSlider("slider1", 2, 5, 0);
+            ms.AddLabel("label1", "Key for noclip", true);
             ms.LoadSettings();
         }
 

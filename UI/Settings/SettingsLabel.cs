@@ -10,11 +10,13 @@ namespace ModManager
     public class SettingsLabel : Settings
     {
         public string text;
+        public bool isTitle;
 
-        public SettingsLabel(string id, string text)
+        public SettingsLabel(string id, string text, bool isTitle)
         {
             base.id = id;
             this.text = text;
+            this.isTitle = isTitle;
         }
     }
 }

@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 namespace ModManager
 {
-    public class SettingsHandler
+    internal class SettingsHandler
     {
         private static SettingsHandler instance;
 
@@ -22,8 +22,10 @@ namespace ModManager
         internal GameObject settInputTemplate;
         internal GameObject settCheckboxTemplate;
         internal GameObject settButtonTemplate;
+        internal GameObject settTitleTemplate;
+        internal GameObject settKeybindTemplate;
 
-        public string displayingModId;
+        internal string displayingModId;
 
         private SettingsHandler()
         {
@@ -36,6 +38,8 @@ namespace ModManager
             settInputTemplate = GameObject.Find("SettingInputTemplate");
             settCheckboxTemplate = GameObject.Find("SettingCheckboxTemplate");
             settButtonTemplate = GameObject.Find("SettingButtonTemplate");
+            settTitleTemplate = GameObject.Find("SettingTitleTemplate");
+            settKeybindTemplate = GameObject.Find("SettingKeybindTemplate");
         }
 
         public static SettingsHandler GetInstance()
@@ -87,8 +91,12 @@ namespace ModManager
                 switch (setting)
                 {
                     case SettingsLabel sl:
-                        GameObject labelTemplate = GameObject.Instantiate(settLabelTemplate);
-                        labelTemplate.transform.GetChild(0).GetComponent<Text>().text = sl.text;
+                        GameObject labelTemplate = GameObject.Instantiate(sl.isTitle ? settTitleTemplate : settLabelTemplate);
+                        if (!sl.isTitle)
+                            labelTemplate.transform.GetChild(0).GetComponent<Text>().text = sl.text;
+                        else
+                            labelTemplate.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = sl.text;
+
                         setting.parent = labelTemplate;
 
                         labelTemplate.transform.SetParent(ui.scrollCanva.transform.GetChild(0).GetChild(0));
