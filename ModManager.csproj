@@ -430,9 +430,9 @@
     <Compile Include="UI\Settings\SettingsInput.cs" />
     <Compile Include="UI\Settings\SettingsLabel.cs" />
     <Compile Include="UI\Settings\SettingsSlider.cs" />
-    <Compile Include="UI\UIControl.cs" />
-    <Compile Include="UI\UICreate.cs" />
-    <Compile Include="UI\UISettings.cs" />
+    <Compile Include="UI\UIHandler.cs" />
+    <Compile Include="UI\UI.cs" />
+    <Compile Include="UI\SettingsHandler.cs" />
     <Compile Include="Utils\Utils.cs" />
   </ItemGroup>
   <ItemGroup>

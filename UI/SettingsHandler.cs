@@ -9,11 +9,11 @@ using UnityEngine.UI;
 
 namespace ModManager
 {
-    public class UISettings
+    public class SettingsHandler
     {
-        private static UISettings instance;
+        private static SettingsHandler instance;
 
-        private UIControl ui;
+        private UIHandler ui;
 
         internal GameObject templateMod;
         // Templates of the settings in the prefab.
@@ -25,9 +25,9 @@ namespace ModManager
 
         public string displayingModId;
 
-        private UISettings()
+        private SettingsHandler()
         {
-            ui = UIControl.GetInstance();
+            ui = UIHandler.GetInstance();
 
             // Using getchild would be faster if im not wrong but this is safer (at least while developing the mod).
             templateMod = GameObject.Find("ModInfoTemplate");
@@ -38,10 +38,10 @@ namespace ModManager
             settButtonTemplate = GameObject.Find("SettingButtonTemplate");
         }
 
-        public static UISettings GetInstance()
+        public static SettingsHandler GetInstance()
         {
             if (instance == null)
-                instance = new UISettings();
+                instance = new SettingsHandler();
             return instance;
         }
 

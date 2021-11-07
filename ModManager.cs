@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ModManager
 {
@@ -15,7 +17,7 @@ namespace ModManager
 
         public ModManager()
         {
-            UICreate.GetInstance();
+            UI.GetInstance().CreateUI();
 
             ModSettings ms = RegisterMod(this);
             ms.AddSlider("slider1", 2, 5, 0);

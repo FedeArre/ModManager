@@ -10,9 +10,9 @@ using UnityEngine.UI;
 
 namespace ModManager
 {
-    internal class UIControl
+    internal class UIHandler
     {
-        private static UIControl instance;
+        private static UIHandler instance;
 
         private bool scrollCanvaShown;
         private bool loadedMods;
@@ -23,7 +23,7 @@ namespace ModManager
         internal GameObject closeMenuButton;
         internal GameObject canvas;
 
-        private UIControl()
+        private UIHandler()
         {
             scrollCanva = GameObject.Find("ModList");
             buttonModShow = GameObject.Find("ModListButton");
@@ -36,36 +36,41 @@ namespace ModManager
             closeMenuButton.GetComponent<Button>().onClick.AddListener(HandleShowHideMenuButton);
         }
 
-        public static UIControl GetInstance()
-        {
-            if (instance == null)
-                instance = new UIControl();
-            return instance;
-        }
-
+        /// <summary>
+        /// This function handles the clicking on "Mods" button.
+        /// </summary>
         public void HandleShowHideMenuButton()
         {
             ClearList();
             scrollCanvaShown = !scrollCanvaShown;
             scrollCanva.SetActive(scrollCanvaShown); 
+
             if (!loadedMods)
             {
                 LoadList();
             }
         }
 
+        /// <summary>
+        /// This function handles the clicking on "Details and Settings" button.
+        /// </summary>
         public void HandleDetailsSettingsButton()
         {
             string actualModId = EventSystem.current.currentSelectedGameObject.name;
-            Mod mod = GetModById(actualModId);
+            Mod mod = Utils.GetModById(actualModId);
             if (mod == null)
                 return;
 
             scrollCanva.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = mod.Name; // Set title as mod name.
+
             ClearList();
-            UISettings.GetInstance().LoadMenuOfMod(mod);
+            SettingsHandler.GetInstance().LoadMenuOfMod(mod);
         }
 
+        /// <summary>
+        /// This function loads all the loaded mods into the mod list
+        /// TODO: Load the mod's icon
+        /// </summary>
         public void LoadList()
         {
             scrollCanva.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "Mod manager";
@@ -73,13 +78,7 @@ namespace ModManager
             {
                 GameObject tempGameObject = GameObject.Instantiate(modTemplate);
                 tempGameObject.transform.GetChild(0).GetComponent<Text>().text = mod.Name;
-                if (mod.Icon != null)
-                {
-                    // This probably doesn't work.
-                    Texture2D txt = new Texture2D(1, 1);
-                    txt.LoadImage(mod.Icon);
-                    tempGameObject.transform.GetChild(1).GetComponent<Image>().sprite = Sprite.Create(txt, new Rect(0, 0, txt.width, txt.height), new Vector2(0.5f, 0.5f));
-                }
+                
                 // Details & Settings button
                 tempGameObject.transform.GetChild(2).name = mod.ID;
                 tempGameObject.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(HandleDetailsSettingsButton);
@@ -90,6 +89,9 @@ namespace ModManager
             loadedMods = true;
         }
 
+        /// <summary>
+        /// This function removes all items of the Content that is inside the viewport in the mod list.
+        /// </summary>
         public void ClearList()
         {
             Transform contentList = scrollCanva.transform.GetChild(0).GetChild(0);
@@ -100,27 +102,28 @@ namespace ModManager
             loadedMods = false;
         }
 
-        public void HandleEnableDisableMod(bool arg0)
+        /// <summary>
+        /// This function enables / disables a mod and sets the new value in the checkbox of mod info.
+        /// </summary>
+        /// <param name="enabled">Mod enabled or not</param>
+        public void HandleEnableDisableMod(bool enabled)
         {
             string actualModId = EventSystem.current.currentSelectedGameObject.name;
             Mod mod = ModLoader.GetModInstance(actualModId);
             if (mod == null)
                 return;
 
-            mod.enabled = arg0;
-            ClearList(); 
-            UISettings.GetInstance().LoadMenuOfMod(mod); // To-do optimize this (dont reload, do something faster)
+            mod.enabled = enabled;
+
+            ClearList();
+            SettingsHandler.GetInstance().LoadMenuOfMod(mod); // To-do optimize this (dont reload, do something faster)
         }
 
-        public Mod GetModById(string modId)
+        public static UIHandler GetInstance()
         {
-            foreach(Mod mod in ModLoader.mods)
-            {
-                if (mod.ID == modId)
-                    return mod;
-            }
-
-            return null;
+            if (instance == null)
+                instance = new UIHandler();
+            return instance;
         }
     }
 }
