@@ -33,7 +33,7 @@ namespace ModManager
                 modSettings.values.Add(base.id, (int) this.selectedKey);
             }
 
-            File.Create(Utils.MODS_FOLDER_PATH + $"/{base.id}.json").Dispose();
+            File.Create(Utils.MODS_SETTINGS_FOLDER_PATH + $"{base.modSettings.modInstance.ID}.json").Dispose();
             using (TextWriter tw = new StreamWriter(Utils.MODS_SETTINGS_FOLDER_PATH + $"/{base.modSettings.modInstance.ID}.json"))
             {
                 tw.Write(JsonConvert.SerializeObject(modSettings.values));
@@ -65,7 +65,7 @@ namespace ModManager
                 OnValueChanged();
             }
 
-            base.parent.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = keyCode.ToString();
+            base.parent.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = selectedKey.ToString();
         }
     }
 }
