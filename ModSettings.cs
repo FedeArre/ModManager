@@ -173,5 +173,14 @@ namespace ModManager
 
             return sc;
         }
+
+        public SettingsKeybind AddKeybind(string id, KeyCode keyCode)
+        {
+            SettingsKeybind sk = new SettingsKeybind(id, keyCode);
+            sk.modSettings = this;
+
+            settingList.Add(sk);
+            return sk;
+        }
     }
 }

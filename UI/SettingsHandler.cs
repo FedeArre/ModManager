@@ -159,6 +159,18 @@ namespace ModManager
                         checkboxTemplate.transform.SetParent(ui.scrollCanva.transform.GetChild(0).GetChild(0));
                         break;
 
+                    case SettingsKeybind sk:
+                        GameObject keybindTemplate = GameObject.Instantiate(settKeybindTemplate);
+                        Button button = keybindTemplate.transform.GetChild(0).GetComponent<Button>();
+                        TextMeshProUGUI text = keybindTemplate.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
+
+                        button.onClick.AddListener(sk.HandleButtonPress);
+                        text.text = sk.selectedKey.ToString();
+
+                        setting.parent = keybindTemplate;
+
+                        keybindTemplate.transform.SetParent(ui.scrollCanva.transform.GetChild(0).GetChild(0));
+                        break;
                 }
             }
         }
