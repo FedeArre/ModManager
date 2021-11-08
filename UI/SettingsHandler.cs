@@ -122,9 +122,8 @@ namespace ModManager
                         GameObject inputTemplate = GameObject.Instantiate(settInputTemplate);
                         TMP_InputField input = inputTemplate.transform.GetChild(0).GetComponent<TMP_InputField>();
 
-                        Debug.LogError("asd");
                         inputTemplate.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = si.text;
-                        Debug.LogError("asd");
+
                         input.onValueChanged.AddListener(si.HandleNewValue);
 
                         setting.parent = inputTemplate;
