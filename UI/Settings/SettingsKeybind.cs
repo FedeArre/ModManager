@@ -59,11 +59,8 @@ namespace ModManager
             GameObject.Destroy(searchingKey);
 
             KeyCode keyCode = (KeyCode)kc;
-            if(keyCode != KeyCode.Escape)
-            {
-                selectedKey = keyCode;
-                OnValueChanged();
-            }
+            selectedKey = keyCode == KeyCode.Escape ? KeyCode.None : keyCode;
+            OnValueChanged();
 
             base.parent.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = selectedKey.ToString();
         }
