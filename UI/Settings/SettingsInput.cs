@@ -10,13 +10,13 @@ namespace ModManager
 {
     public class SettingsInput : Settings
     {
-        internal string placeholder;
+        internal string text;
         public string value;
-
-        public SettingsInput(string id, string placeholder)
+        
+        public SettingsInput(string id, string text)
         {
             base.id = id;
-            this.placeholder = placeholder;
+            this.text = text;
         }
 
         public void HandleNewValue(string str)

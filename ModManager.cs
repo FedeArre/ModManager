@@ -20,9 +20,7 @@ namespace ModManager
             UI.GetInstance().CreateUI();
 
             ModSettings ms = RegisterMod(this);
-            ms.AddSlider("slider1", 2, 5, 0);
-            ms.AddLabel("label1", "Key for noclip", true);
-            ms.AddKeybind("keybind1", KeyCode.None);
+            ms.AddInput("input1", "gib text pls:");
             ms.LoadSettings();
         }
 

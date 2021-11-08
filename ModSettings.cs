@@ -132,11 +132,11 @@ namespace ModManager
         /// Adds a "Input" setting.
         /// </summary>
         /// <param name="id">The id of the setting, has to be unique</param>
-        /// <param name="placeholder">The placeholder text (shows only when input is empty)</param>
+        /// <param name="leftText">The text that is located at the left of the input</param>
         /// <returns>A SettingsInput instance</returns>
-        public SettingsInput AddInput(string id, string placeholder = "")
+        public SettingsInput AddInput(string id, string leftText)
         {
-            SettingsInput si = new SettingsInput(id, placeholder);
+            SettingsInput si = new SettingsInput(id, leftText);
             si.modSettings = this;
             settingList.Add(si);
 
@@ -145,7 +145,7 @@ namespace ModManager
 
         /// <summary>
         /// Adds a "Button" setting
-        /// TODO: Add a way to handling the buttons clicks using events
+        /// TODO: Add a way to handling the buttons clicks using Actions
         /// </summary>
         /// <param name="id">The id of the setting, has to be unique</param>
         /// <param name="text">The text inside the button</param>
