@@ -118,10 +118,11 @@ namespace ModManager
         /// <param name="minValue">The minimum value that the slider will go</param>
         /// <param name="maxValue">The maximum value that the slider will go</param>
         /// <param name="numberCount">Number of decimals to count. Use 0 for integers</param>
+        /// <param name="title">A text that is shown at the top left of the slidel (optional)</param>
         /// <returns>A SettingSlider instance</returns>
-        public SettingsSlider AddSlider(string id, float minValue, float maxValue, int numberCount)
+        public SettingsSlider AddSlider(string id, float minValue, float maxValue, int numberCount, string title = "")
         {
-            SettingsSlider ss = new SettingsSlider(id, minValue, maxValue, numberCount);
+            SettingsSlider ss = new SettingsSlider(id, minValue, maxValue, numberCount, title);
             ss.modSettings = this;
             settingList.Add(ss);
 

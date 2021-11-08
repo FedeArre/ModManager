@@ -113,6 +113,8 @@ namespace ModManager
 
                         sliderComponent.onValueChanged.AddListener(ss.HandlerSlider);
 
+                        sliderTemplate.transform.GetChild(2).GetComponent<Text>().text = ss.title;
+
                         setting.parent = sliderTemplate;
                         sliderTemplate.transform.SetParent(ui.scrollCanva.transform.GetChild(0).GetChild(0));
                         break;
