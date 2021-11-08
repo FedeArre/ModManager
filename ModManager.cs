@@ -28,7 +28,17 @@ namespace ModManager
 
         public override void OnMenuLoad()
         {
-            GameObject.Destroy(GameObject.Find("VersionNumber")); // Fixes broken "Mods" button due to overlapping.
+            UI.GetInstance().version.GetComponent<TextMeshProUGUI>().text = $"{Application.version}";
+            GameObject.Destroy(GameObject.Find("VersionNumber"));
+
+            GameObject discordButton = GameObject.Find("discoirdbutt");
+            GameObject youtubeButton = GameObject.Find("youtubebut");
+
+            discordButton.transform.SetParent(UI.GetInstance().discord.transform);
+            youtubeButton.transform.SetParent(UI.GetInstance().youtube.transform);
+
+            discordButton.transform.localPosition = Vector3.zero;
+            youtubeButton.transform.localPosition = Vector3.zero;
         }
 
         /// <summary>

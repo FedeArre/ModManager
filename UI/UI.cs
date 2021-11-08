@@ -15,6 +15,10 @@ namespace ModManager
 
         internal GameObject canvas;
 
+        internal GameObject youtube;
+        internal GameObject discord;
+        internal GameObject version;
+
         private UI()
         {
             bundle = AssetBundle.LoadFromMemory(Properties.Resources.ui);
@@ -29,6 +33,10 @@ namespace ModManager
             canvas = GameObject.Instantiate(canvas);
 
             GameObject.DontDestroyOnLoad(canvas);
+
+            youtube = canvas.transform.GetChild(4).gameObject;
+            discord = canvas.transform.GetChild(5).gameObject;
+            version = canvas.transform.GetChild(6).gameObject;
 
             UIHandler.GetInstance().canvas = canvas;
         }

@@ -98,7 +98,6 @@ namespace ModManager
                             labelTemplate.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = sl.text;
 
                         setting.parent = labelTemplate;
-
                         labelTemplate.transform.SetParent(ui.scrollCanva.transform.GetChild(0).GetChild(0));
                         break;
                 
@@ -110,15 +109,11 @@ namespace ModManager
                         sliderComponent.value = (float) ss.value;
                         sliderTemplate.transform.GetChild(1).GetComponent<Text>().text = $"{ss.value}";
 
-                        if(ss.numberCount == 0)
-                        {
-                            sliderComponent.wholeNumbers = true;
-                        }
+                        sliderComponent.wholeNumbers = (ss.numberCount == 0);
 
                         sliderComponent.onValueChanged.AddListener(ss.HandlerSlider);
 
                         setting.parent = sliderTemplate;
-
                         sliderTemplate.transform.SetParent(ui.scrollCanva.transform.GetChild(0).GetChild(0));
                         break;
                     case SettingsInput si:
@@ -141,7 +136,6 @@ namespace ModManager
                         butt.onClick.AddListener(sb.HandleClick);
 
                         setting.parent = buttonTemplate;
-
                         buttonTemplate.transform.SetParent(ui.scrollCanva.transform.GetChild(0).GetChild(0));
                         break;
 
@@ -152,10 +146,9 @@ namespace ModManager
                         toggle.isOn = sc.ticked;
                         toggle.onValueChanged.AddListener(sc.HandleChange);
 
-                        setting.parent = checkboxTemplate;
-
                         checkboxTemplate.transform.GetChild(1).GetComponent<Text>().text = sc.text;
 
+                        setting.parent = checkboxTemplate;
                         checkboxTemplate.transform.SetParent(ui.scrollCanva.transform.GetChild(0).GetChild(0));
                         break;
 
@@ -168,7 +161,6 @@ namespace ModManager
                         text.text = sk.selectedKey.ToString();
 
                         setting.parent = keybindTemplate;
-
                         keybindTemplate.transform.SetParent(ui.scrollCanva.transform.GetChild(0).GetChild(0));
                         break;
                 }
