@@ -12,13 +12,13 @@ namespace ModManager
 {
     public class SettingsKeybind : Settings
     {
-        public KeyCode selectedKey;
+        public KeyCode multiplierSelectedKey;
         internal GameObject searchingKey;
 
-        public SettingsKeybind(string id, KeyCode selectedKey)
+        public SettingsKeybind(string id, KeyCode multiplierKey)
         {
             base.id = id;
-            this.selectedKey = selectedKey;
+            this.multiplierSelectedKey = multiplierKey;
         }
 
         internal void OnValueChanged()
@@ -26,11 +26,11 @@ namespace ModManager
             // Saving - TESTING PENDING
             if (modSettings.values.TryGetValue(base.id, out object val))
             {
-                modSettings.values[base.id] = (int) this.selectedKey;
+                modSettings.values[base.id] = (int) this.multiplierSelectedKey;
             }
             else
             {
-                modSettings.values.Add(base.id, (int) this.selectedKey);
+                modSettings.values.Add(base.id, (int) this.multiplierSelectedKey);
             }
 
             File.Create(Utils.MODS_SETTINGS_FOLDER_PATH + $"{base.modSettings.modInstance.ID}.json").Dispose();
@@ -59,10 +59,10 @@ namespace ModManager
             GameObject.Destroy(searchingKey);
 
             KeyCode keyCode = (KeyCode)kc;
-            selectedKey = keyCode == KeyCode.Escape ? KeyCode.None : keyCode;
+            multiplierSelectedKey = keyCode == KeyCode.Escape ? KeyCode.None : keyCode;
             OnValueChanged();
 
-            base.parent.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = selectedKey.ToString();
+            base.parent.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = multiplierSelectedKey.ToString();
         }
     }
 }

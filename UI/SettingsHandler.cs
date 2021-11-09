@@ -118,6 +118,7 @@ namespace ModManager
                         setting.parent = sliderTemplate;
                         sliderTemplate.transform.SetParent(ui.scrollCanva.transform.GetChild(0).GetChild(0));
                         break;
+
                     case SettingsInput si:
                         GameObject inputTemplate = GameObject.Instantiate(settInputTemplate);
                         TMP_InputField input = inputTemplate.transform.GetChild(0).GetComponent<TMP_InputField>();

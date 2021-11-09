@@ -146,11 +146,10 @@ namespace ModManager
 
         /// <summary>
         /// Adds a "Button" setting
-        /// TODO: Add a way to handling the buttons clicks using Actions
         /// </summary>
         /// <param name="id">The id of the setting, has to be unique</param>
         /// <param name="text">The text inside the button</param>
-        /// <returns>A SettingsButton instance</returns>
+        /// <returns>A SettingsButton instance. Remember to suscribe to the OnButtonClick event</returns>
         public SettingsButton AddButton(string id, string text)
         {
             SettingsButton sb = new SettingsButton(id, text);

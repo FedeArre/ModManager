@@ -20,8 +20,28 @@ namespace ModManager
             UI.GetInstance().CreateUI();
 
             ModSettings ms = RegisterMod(this);
-            ms.AddInput("input1", "gib text pls:");
+            SettingsButton button = ms.AddButton("button1", "Delete!");
+            ms.AddToggle("checkbox1", "hello world :)");
+            ms.AddInput("input1", "text example hey:");
+            ms.AddLabel("label1", "which keys do you want to crash the game", false);
+            ms.AddKeybind("heyy!", KeyCode.X);
+            ms.AddLabel("label2", "just joking he", true);
+            ms.AddSlider("slider1", 69, 420, 0, "text slider testing now");
+
+            button.OnButtonClick += ButtonClick;
+            ms.SettingsUpdated += OnSettingsUpdate;
+
             ms.LoadSettings();
+        }
+
+        public void ButtonClick()
+        {
+            Debug.LogError("Our magic button was clicked :)");
+        }
+
+        public void OnSettingsUpdate()
+        {
+            Debug.LogError("Our magic settings were updated!");
         }
 
         public override void OnMenuLoad()
