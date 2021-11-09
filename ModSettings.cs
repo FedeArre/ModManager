@@ -89,7 +89,7 @@ namespace ModManager
                         si.value = (string) entry.Value;
                         break;
                     case SettingsKeybind sk:
-                        sk.selectedKey = (KeyCode)Int32.Parse(entry.Value.ToString()); // Cant use int -> KeyCode since entry.Value is object.
+                        sk.multiplierSelectedKey = (KeyCode)Int32.Parse(entry.Value.ToString()); // Cant use int -> KeyCode since entry.Value is object.
                         break;
                 }
             }

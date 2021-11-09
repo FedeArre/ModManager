@@ -161,7 +161,7 @@ namespace ModManager
                         TextMeshProUGUI text = keybindTemplate.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
 
                         button.onClick.AddListener(sk.HandleButtonPress);
-                        text.text = sk.selectedKey.ToString();
+                        text.text = sk.multiplierSelectedKey.ToString();
 
                         setting.parent = keybindTemplate;
                         keybindTemplate.transform.SetParent(ui.scrollCanva.transform.GetChild(0).GetChild(0));
